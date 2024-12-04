@@ -13,7 +13,12 @@ function App() {
 
   function selecionaTarefa(tarefaSelecionada: ITarefa) {
     setItemSelecionado(tarefaSelecionada)
-    setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => ({...tarefa, selecionado: tarefa.id === tarefaSelecionada.id ? true : false})))
+    setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => (
+      {
+        ...tarefa,
+        selecionado: tarefa.id === tarefaSelecionada.id ? true : false
+      }
+    )))
   }
 
   function finalizarTarefa() {
@@ -26,9 +31,14 @@ function App() {
             selecionado: false,
             completado: true
           }
+        } else {
+          return {
+            ...tarefa,
+            desabilitado: false
+          }
         }
-        return tarefa
       }))
+
     }
   }
 
@@ -36,7 +46,7 @@ function App() {
     <div className={style.AppStyle}>
       <Formulario setTarefas={setTarefas}/>
       <Lista tarefas={tarefas} selecionaTarefa={selecionaTarefa}></Lista>
-      <Cronometro itemSelecionado={itemSelecionado} finalizarTarefa={finalizarTarefa}></Cronometro>
+      <Cronometro itemSelecionado={itemSelecionado} finalizarTarefa={finalizarTarefa} setTarefas={setTarefas}></Cronometro>
     </div>
   )
 }

@@ -25,6 +25,10 @@
     background-color: #292929;
     box-shadow: 2px 4px 4px #0000009F inset;
   }
+
+  .itemDesabilitado {
+    pointer-events: none;
+  }
   
   .itemCompletado {
     background-color: #566F42;
